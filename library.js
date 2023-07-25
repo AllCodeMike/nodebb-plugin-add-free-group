@@ -13,7 +13,7 @@ plugin.addUserToFreeGroup = async (params) => {
     const groupName = 'free-plan-membership';
 
 	groups.join(groupName, params.user.uid, function(err) {
-			errorHandler.handle(err, res);
+		console.log("ERROR ON PLUGIN", error);
 	});
   } catch (error) {
     console.log("ERROR ON PLUGIN", error);
