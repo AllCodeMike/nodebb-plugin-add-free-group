@@ -2,13 +2,6 @@
 
 const plugin = {};
 
-plugin.init = async (params) => {
-  const { router, middleware } = params;
-
-  // Add a middleware to the user.create route
-  router.post('/api/v3/users', middleware.applyCSRF, plugin.addUserToGroup);
-};
-
 plugin.addUserToGroup = async (req, res, next) => {
   try {
     // Get the user ID from the response data
