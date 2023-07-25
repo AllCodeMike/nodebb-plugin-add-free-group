@@ -2,11 +2,11 @@
 
 const plugin = {};
 
-plugin.addUserToGroup = async (req, res, next) => {
+plugin.addUserToGroup = (params) => {
   try {
-	console.log("GOT HIERE", res);
+	console.log("GOT HIERE", params);
     // Get the user ID from the response data
-    const uid = res.locals.uid;
+    const uid = params.uid;
 
     // Set the name of the group you want to add the user to
     const groupName = 'free-plan-membership';
@@ -18,10 +18,8 @@ plugin.addUserToGroup = async (req, res, next) => {
     if (groupData) {
       await plugin.addUserToGroupWithId(uid, groupData._id);
     }
-
-    next();
   } catch (error) {
-    next(error);
+    console.log("ERROR ON PLUGIN", error);
   }
 };
 
