@@ -1,8 +1,9 @@
 'use strict';
 
 const plugin = {};
+var groups = require.main.require('./src/groups')
 
-plugin.addUserToGroup = async (params) => {
+plugin.addUserToFreeGroup = async (params) => {
   try {
 	console.log("GOT HIERE", params);
     // Get the user ID from the response data
@@ -11,44 +12,12 @@ plugin.addUserToGroup = async (params) => {
     // Set the name of the group you want to add the user to
     const groupName = 'free-plan-membership';
 
-    // Get the group data based on the group name
-    const groupData = await plugin.getGroupByName(groupName);
-
-    // Add the user to the group
-    if (groupData) {
-      await plugin.addUserToGroupWithId(uid, groupData._id);
-    }
+	groups.join(groupName, params.user.uid, function(err) {
+			errorHandler.handle(err, res);
+	});
   } catch (error) {
     console.log("ERROR ON PLUGIN", error);
   }
-};
-
-plugin.getGroupByName = (groupName) => {
-  return new Promise((resolve, reject) => {
-    plugin.Groups.getGroups([groupName], 1, (err, groups) => {
-      if (err) {
-        return reject(err);
-      }
-
-      if (groups.length > 0) {
-        resolve(groups[0]);
-      } else {
-        resolve(null);
-      }
-    });
-  });
-};
-
-plugin.addUserToGroupWithId = (uid, groupId) => {
-  return new Promise((resolve, reject) => {
-    plugin.Groups.join(groupId, uid, (err) => {
-      if (err) {
-        return reject(err);
-      }
-
-      resolve();
-    });
-  });
 };
 
 module.exports = plugin;
