@@ -4,6 +4,7 @@ const plugin = {};
 
 plugin.addUserToGroup = async (req, res, next) => {
   try {
+	console.log("GOT HIERE", res);
     // Get the user ID from the response data
     const uid = res.locals.uid;
 
