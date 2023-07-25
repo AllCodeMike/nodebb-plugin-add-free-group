@@ -2,7 +2,7 @@
 
 const plugin = {};
 
-plugin.addUserToGroup = (params) => {
+plugin.addUserToGroup = async (params) => {
   try {
 	console.log("GOT HIERE", params);
     // Get the user ID from the response data
