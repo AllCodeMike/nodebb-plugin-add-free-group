@@ -6,7 +6,7 @@ var groups = require.main.require('./src/groups')
 const plugins = require.main.require('./src/plugins');
 const axios = require.main.require('axios');
 
-plugin.addUserToFreeGroup = async (req, res, params) => {
+plugin.addUserToFreeGroup = async (params) => {
   try {
 	console.log("GOT HIERE", params);
     // Get the user ID from the response data
@@ -32,11 +32,12 @@ plugin.addUserToFreeGroup = async (req, res, params) => {
 		}
 	
 		console.log("ENTERED TO REDIRECT PAGE AFTER CONFIG DEF");
+		console.log("APP", app);
 		const response = await axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.data.registration_plan, {}, config)
 			.then(response => {
 				// The request was successful, and the response data is available here.
 				console.log("RESPONSE HERERERER", response);
-				pluginRedirect(req, res, response.data);
+				//appluginRedirect(response.data);
 			})
 			.catch(error => {
 				// An error occurred during the request.
