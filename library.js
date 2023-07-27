@@ -21,6 +21,8 @@ plugin.addUserToFreeGroup = async (params) => {
 	});
 	
 	if(params.data && params.data.registration_plan && params.data.registration_plan !== 'free-plan-membership'){
+		console.log("ENTERED TO REDIRECT PAGE");
+		console.log("Axios", axios);
 		var config = {
 			params:{
 				uid: params.user.uid
@@ -40,14 +42,6 @@ plugin.addUserToFreeGroup = async (params) => {
 				console.log("error", error);
 		});
 	}
-	
-  } catch (error) {
-    console.log("ERROR ON PLUGIN", error);
-  }
-};
-
-plugin.addUserToFreeGroup = async (params) => {
-  try {
 	
   } catch (error) {
     console.log("ERROR ON PLUGIN", error);
