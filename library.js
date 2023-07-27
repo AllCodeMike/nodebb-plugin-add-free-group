@@ -1,9 +1,10 @@
 'use strict';
 
 const plugin = {};
+
 var groups = require.main.require('./src/groups')
 const plugins = require.main.require('./src/plugins');
-const axios = require('axios');
+const axios = require.main.require('axios');
 const controllerHelpers = require.main.require('./src/controllers/helpers');
 				controllerHelpers.redirect(res, `${nconf.get('relative_path')}/${mount}${req.path}`);
 
