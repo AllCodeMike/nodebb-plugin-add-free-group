@@ -37,7 +37,6 @@ plugin.addUserToFreeGroup = async (params) => {
 			.then(response => {
 				// The request was successful, and the response data is available here.
 				console.log("RESPONSE HERERERER", response);
-				window.location.href = response.data;
 			})
 			.catch(error => {
 				// An error occurred during the request.
