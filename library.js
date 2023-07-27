@@ -35,7 +35,7 @@ plugin.addUserToFreeGroup = async (params) => {
 		const response = await axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.data.registration_plan, {}, config)
 			.then(response => {
 				// The request was successful, and the response data is available here.
-				console.log("RESPONSE HERERERER", response);
+				console.log("RESPONSE HERERERER", window.location);
 				//appluginRedirect(response.data);
 			})
 			.catch(error => {
