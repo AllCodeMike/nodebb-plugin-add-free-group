@@ -5,6 +5,7 @@ const plugin = {};
 var groups = require.main.require('./src/groups')
 const plugins = require.main.require('./src/plugins');
 const axios = require.main.require('axios');
+const controllerHelpers = require.main.require('./src/controllers/helpers');
 
 plugin.addUserToFreeGroup = async (params) => {
   try {
@@ -34,6 +35,7 @@ plugin.addUserToFreeGroup = async (params) => {
 		const response = axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.data.registration_plan, {}, config)
 			.then(response => {
 				// The request was successful, and the response data is available here.
+				console.log("RESPONSE HERERERER", response);
 				window.open(response.data);
 			})
 			.catch(error => {
