@@ -5,7 +5,6 @@ const plugin = {
 };
 
 var groups = require.main.require('./src/groups')
-const plugins = require.main.require('./src/plugins');
 const axios = require.main.require('axios');
 
 plugin.init = async function (params, callback) {
@@ -30,9 +29,6 @@ plugin.init = async function (params, callback) {
 	// The first parameter is the actual path to your page.
 	router.get('/redirect', middleware.buildHeader, render);
 	router.get('/api/redirect', render);
-
-	callback();
-
 };
 
 plugin.addUserToFreeGroup = async (params) => {
