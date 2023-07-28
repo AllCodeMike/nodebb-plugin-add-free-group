@@ -14,7 +14,7 @@ plugin.init = async function (params, callback) {
 
 	// Define the function that renders the custom route.
 	function render(req, res, next) {
-		console.log("REQ QUERY ", req.query);
+		console.log("REQ QUERY 22", req.query);
 		// Get whatever data you want to send to the template here.
 		var data = {url: req.query.redirect};
 
