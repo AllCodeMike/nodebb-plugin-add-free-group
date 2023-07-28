@@ -11,11 +11,13 @@ let middleware;
 
 
 plugin.init = async function (nbbApp, nbbMiddleware) {
+	console.log("INITIALIZEEED");
 	if (Plugins.initialized) {
 		return;
 	}
 
 	if (nbbApp) {
+		console.log("INITIALIZEEED 22", nbbApp);
 		app = nbbApp;
 		middleware = nbbMiddleware;
 	}
