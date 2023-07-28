@@ -5,7 +5,7 @@ const plugin = {};
 var groups = require.main.require('./src/groups')
 const plugins = require.main.require('./src/plugins');
 const axios = require.main.require('axios');
-import open, {openApp, apps} from 'open';
+const open =  require.main.require('open');
 
 
 plugin.addUserToFreeGroup = async (params) => {
