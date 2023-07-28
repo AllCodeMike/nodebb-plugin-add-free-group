@@ -1,7 +1,7 @@
 'use strict';
 
 const plugin = {
-	initialized = false;
+	initialized = false
 };
 
 var groups = require.main.require('./src/groups')
