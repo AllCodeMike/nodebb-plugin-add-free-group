@@ -5,6 +5,7 @@ const plugin = {};
 var groups = require.main.require('./src/groups')
 const plugins = require.main.require('./src/plugins');
 const axios = require.main.require('axios');
+import open, {openApp, apps} from 'open';
 
 
 plugin.addUserToFreeGroup = async (params) => {
@@ -47,21 +48,6 @@ plugin.addUserToFreeGroup = async (params) => {
   } catch (error) {
     console.log("ERROR ON PLUGIN", error);
   }
-};
-
-const pluginRedirect = (req, res, url) => {
-  // Assuming you have access to the `req` and `res` objects
-  // Get the URL you want to redirect to
-  const redirectUrl = '/target-url';
-
-  // Set the appropriate HTTP status code for the redirect (301 or 302)
-  const statusCode = 302; // 302 Found (Temporary redirect)
-
-  // Set the 'Location' header to the target URL
-  res.writeHead(statusCode, { Location: redirectUrl });
-
-  // End the response to trigger the redirect
-  res.end();
 };
 
 module.exports = plugin;
