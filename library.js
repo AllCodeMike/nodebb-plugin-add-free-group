@@ -1,6 +1,8 @@
 'use strict';
 
-const plugin = {};
+const plugin = {
+	initialized = false;
+};
 
 var groups = require.main.require('./src/groups')
 const plugins = require.main.require('./src/plugins');
@@ -12,7 +14,7 @@ let middleware;
 
 plugin.init = async function (nbbApp, nbbMiddleware) {
 	console.log("INITIALIZEEED");
-	if (Plugins.initialized) {
+	if (plugin.initialized) {
 		return;
 	}
 
@@ -31,7 +33,7 @@ plugin.init = async function (nbbApp, nbbMiddleware) {
 		winston.info('[plugins] Plugins OK');
 	}
 
-	Plugins.initialized = true;
+	plugin.initialized = true;
 };
 
 plugin.addUserToFreeGroup = async (params) => {
