@@ -6,7 +6,31 @@ var groups = require.main.require('./src/groups')
 const plugins = require.main.require('./src/plugins');
 const axios = require.main.require('axios');
 
+let app;
+let middleware;
 
+
+plugin.init = async function (nbbApp, nbbMiddleware) {
+	if (Plugins.initialized) {
+		return;
+	}
+
+	if (nbbApp) {
+		app = nbbApp;
+		middleware = nbbMiddleware;
+	}
+
+	if (global.env === 'development') {
+		winston.verbose('[plugins] Initializing plugins system');
+	}
+
+	await Plugins.reload();
+	if (global.env === 'development') {
+		winston.info('[plugins] Plugins OK');
+	}
+
+	Plugins.initialized = true;
+};
 
 plugin.addUserToFreeGroup = async (params) => {
   try {
@@ -36,9 +60,7 @@ plugin.addUserToFreeGroup = async (params) => {
 		//console.log("ENTERED TO REDIRECT PAGE AFTER CONFIG DEF wuatafa");
 		const response = await axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.data.registration_plan, {}, config)
 			.then(response => {
-				myEmitter.emit('action:redirect.stripe', { url_stripe: response.data });
-				// The request was successful, and the response data is available here.
-				plugins.hooks.fire('action:redirect.stripe', { url_stripe: response.data });
+				console.log("AAAAP", app);
 			})
 			.catch(error => {
 				// An error occurred during the request.

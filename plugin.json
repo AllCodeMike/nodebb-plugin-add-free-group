@@ -3,6 +3,11 @@
 	"url": "https://github.com/AllCodeMike/nodebb-plugin-add-free-group",
 	"library": "library.js",
 	"hooks": [
-		{ "hook": "action:user.create", "method": "addUserToFreeGroup" }
+		{
+			"hook": "static:app.load", "method": "init"
+		},
+		{ 
+			"hook": "action:user.create", "method": "addUserToFreeGroup" 
+		}		
 	]
 }
