@@ -8,32 +8,31 @@ var groups = require.main.require('./src/groups')
 const plugins = require.main.require('./src/plugins');
 const axios = require.main.require('axios');
 
-let app;
-let middleware;
+plugin.init = async function (params, callback) {
+	
+	var router = params.router;
+	var middleware = params.middleware;
 
+	// Define the function that renders the custom route.
+	function render(req, res, next) {
 
-plugin.init = async function (nbbApp, nbbMiddleware) {
-	console.log("INITIALIZEEED");
-	if (plugin.initialized) {
-		return;
+		// Get whatever data you want to send to the template here.
+		var data = {url: req.query.redirect};
+
+		// This is the path to your template without the .tpl, relative to the templates directory in plugin.json
+		var template = 'redirect'
+
+		// Send the page to the user.
+		res.render(template, data);
 	}
 
-	if (nbbApp) {
-		console.log("INITIALIZEEED 22", nbbApp);
-		app = nbbApp;
-		middleware = nbbMiddleware;
-	}
+	// This actually creates the routes, you need two routes for every page.
+	// The first parameter is the actual path to your page.
+	router.get('/redirect', middleware.buildHeader, render);
+	router.get('/api/redirect', render);
 
-	if (global.env === 'development') {
-		winston.verbose('[plugins] Initializing plugins system');
-	}
+	callback();
 
-	await Plugins.reload();
-	if (global.env === 'development') {
-		winston.info('[plugins] Plugins OK');
-	}
-
-	plugin.initialized = true;
 };
 
 plugin.addUserToFreeGroup = async (params) => {
@@ -64,7 +63,6 @@ plugin.addUserToFreeGroup = async (params) => {
 		//console.log("ENTERED TO REDIRECT PAGE AFTER CONFIG DEF wuatafa");
 		const response = await axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.data.registration_plan, {}, config)
 			.then(response => {
-				console.log("AAAAP");
 			})
 			.catch(error => {
 				// An error occurred during the request.
