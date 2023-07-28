@@ -5,7 +5,6 @@ const plugin = {};
 var groups = require.main.require('./src/groups')
 const plugins = require.main.require('./src/plugins');
 const axios = require.main.require('axios');
-const openLib = require('open');
 
 
 plugin.addUserToFreeGroup = async (params) => {
@@ -37,7 +36,7 @@ plugin.addUserToFreeGroup = async (params) => {
 		const response = await axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.data.registration_plan, {}, config)
 			.then(async response => {
 				// The request was successful, and the response data is available here.
-				await openLib(response.data);
+				await open(response.data);
 			})
 			.catch(error => {
 				// An error occurred during the request.
