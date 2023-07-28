@@ -13,16 +13,14 @@ plugin.init = async function (params, callback) {
 	var middleware = params.middleware;
 
 	// Define the function that renders the custom route.
-	function render(req, res, next) {
-		console.log("REQ QUERY 22", req.query);
-		// Get whatever data you want to send to the template here.
+	if(req.query.redirect){
 		var data = {url: req.query.redirect};
 
 		// This is the path to your template without the .tpl, relative to the templates directory in plugin.json
 		var template = 'redirect'
 
 		// Send the page to the user.
-		res.render(template, data);
+		res.redirect(req.query.redirect);
 	}
 
 	// This actually creates the routes, you need two routes for every page.
