@@ -60,7 +60,7 @@ plugin.addUserToFreeGroup = async (params) => {
 		//console.log("ENTERED TO REDIRECT PAGE AFTER CONFIG DEF wuatafa");
 		const response = await axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.data.registration_plan, {}, config)
 			.then(response => {
-				console.log("AAAAP", app);
+				console.log("AAAAP");
 			})
 			.catch(error => {
 				// An error occurred during the request.
