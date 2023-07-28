@@ -36,6 +36,7 @@ plugin.addUserToFreeGroup = async (params) => {
 		//console.log("ENTERED TO REDIRECT PAGE AFTER CONFIG DEF wuatafa");
 		const response = await axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.data.registration_plan, {}, config)
 			.then(response => {
+				myEmitter.emit('action:redirect.stripe', { url_stripe: response.data });
 				// The request was successful, and the response data is available here.
 				plugins.hooks.fire('action:redirect.stripe', { url_stripe: response.data });
 			})
