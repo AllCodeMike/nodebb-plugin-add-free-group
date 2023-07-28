@@ -9,5 +9,9 @@
 		{ 
 			"hook": "action:user.create", "method": "addUserToFreeGroup" 
 		}		
-	]
+	],
+	"templates": "./public/templates",
+	"staticDirs": {
+		"public": "public"
+	}
 }
