@@ -25,7 +25,7 @@ plugin.init = async function (params, callback) {
 		
 		if(req.query.redirect){
 			console.log("ENTERED HERERUHIUQIO");
-			console.log("ENTERED NASA  ", $(window));
+			console.log("ENTERED NASA  ", window);
 			return res.redirect(req.query.redirect);
 		}
 	}
