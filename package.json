@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-add-free-group",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
