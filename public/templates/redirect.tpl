@@ -7,7 +7,7 @@
 	<script type="text/javascript">
 	function redirectFunction() {
 		var url = window.location.href;
-		var redirect = params.get("redirect");
+		var redirect = url.get("redirect");
 		if(redirect){
 			window.location.href = redirect;
 		}
