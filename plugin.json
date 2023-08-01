@@ -6,6 +6,9 @@
 		{
 			"hook": "static:app.load", "method": "init"
 		},
+		{
+			"hook": "filter:register.complete", "method": "registerComplete"
+		},
 		{ 
 			"hook": "action:user.create", "method": "addUserToFreeGroup" 
 		}		

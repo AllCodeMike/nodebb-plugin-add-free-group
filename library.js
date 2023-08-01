@@ -5,67 +5,75 @@ const plugin = {
 };
 
 var groups = require.main.require('./src/groups')
+var helpers = require.main.require('./src/controllers/helpers');
 const axios = require.main.require('axios');
 
-plugin.init = async function (params, callback) {
+let app;
+plugin.init = async function (params) {
+	// Define the function that renders the custom route.
 	
 	var router = params.router;
 	var middleware = params.middleware;
-
-	// Define the function that renders the custom route.
-	function render(req, res, next) {
-		// This is the path to your template without the .tpl, relative to the templates directory in plugin.json
-		console.log("POSIBLE LAST VERSION");
-		var template = 'redirect'
-
-		// Send the page to the user.
-		res.render(template, {});
+	
+	router.get('/homepage', middleware.buildHeader, render);
+	router.get('/api/homepage', render);
+	
+	if (params) {
+		app = params;
 	}
-
-	// This actually creates the routes, you need two routes for every page.
-	// The first parameter is the actual path to your page.
-	router.get('/redirect', middleware.buildHeader, render);
-	router.get('/api/redirect', render);
 };
 
 plugin.addUserToFreeGroup = async (params) => {
   try {
-	console.log("GOT HIERE", params);
     // Get the user ID from the response data
     const uid = params.uid;
 
     // Set the name of the group you want to add the user to
     const groupName = 'free-plan-membership';
 
-	groups.join(groupName, params.user.uid, function(err) {
-		console.log("ERROR ON PLUGIN", err);
-	});
+	groups.join(groupName, params.user.uid);
 	
-	if(params.data && params.data.registration_plan && params.data.registration_plan !== 'free-plan-membership'){
-		console.log("ENTERED TO REDIRECT PAGE");
-		console.log("Axios", axios);
+  } catch (error) {
+    console.log("ERROR ON PLUGIN THIS RIGHT HERE", error);
+  }
+};
+
+//filter:register.complete registerComplete
+plugin.registerComplete = async (params) => {
+	const uid = params.uid;
+
+	if(params.registration_plan !== 'free-plan-membership' ){
 		var config = {
 			params:{
-				uid: params.user.uid
+				uid: uid
 			},
 			validateStatus: function (status) {
 				return status >= 200 && status <= 400
 			}
 		}
-	
-		//console.log("ENTERED TO REDIRECT PAGE AFTER CONFIG DEF wuatafa");
-		const response = await axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.data.registration_plan, {}, config)
+
+		const response = await axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.registration_plan, {}, config)
 			.then(response => {
+				params.next = response.data;
 			})
 			.catch(error => {
 				// An error occurred during the request.
 				console.log("error", error);
 		});
 	}
-	
-  } catch (error) {
-    console.log("ERROR ON PLUGIN", error);
-  }
+	return params;
 };
+
+function render(req, res, next) {
+
+		// Get whatever data you want to send to the template here.
+		var data = {whatever: 33};
+
+		// This is the path to your template without the .tpl, relative to the templates directory in plugin.json
+		var template = 'homepage'
+
+		// Send the page to the user.
+		res.render(template, data);
+}
 
 module.exports = plugin;
