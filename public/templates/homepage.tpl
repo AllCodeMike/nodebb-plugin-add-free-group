@@ -7,8 +7,8 @@
 		<div class="row-7">
 			<div class="row" style="justify-content: center; display: flex;text-align: center;">
 				<h3>NARRATIVE MINDWORKS WELCOMES YOU <br/> WORKING TOGHETER</h3>
-			</div>
-			<div class="row" style="justify-content: center;text-align: center;">
+			</div>  
+			<div class="row" style="justify-content: center;text-align: justify; text-justify: inter-word;">
 				<p>
 					Welcome to NARRATIVE MINDWORKS. Our goal is to provide access and community to narrative coaching professionals. Narrative Mindworks is the place to see and hear what's happening, what's working and what needs problem solving.
 					<br/>
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col">
+			<div class="col-4">
 				<div class="card" style="width: 18rem;">
 				  <img class="card-img-top" src="images/free_access_picture.png" alt="Card image cap">
 				  <div class="card-body">
@@ -29,7 +29,7 @@
 				  </div>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col-4">
 				<div class="card" style="width: 18rem;">
 				  <img class="card-img-top" src="images/professional_access_picture.png" alt="Card image cap">
 				  <div class="card-body">
@@ -38,7 +38,7 @@
 				  </div>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col-4">
 				<div class="card" style="width: 18rem;">
 				  <img class="card-img-top" src="images/professional_plus_access_picture.png" alt="Card image cap">
 				  <div class="card-body">
