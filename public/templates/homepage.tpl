@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <head>
    <title> Call JavaScript function on page load. </title>
+  <!-- Add Bootstrap link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
    <body>
 	<div class="container-fluid">
@@ -19,7 +22,7 @@
 				<button type="button" class="mt-5 mb-5 btn btn-primary">Contact</button>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" style="margin-top: 100px;">
 			<div class="card-group">
 				<div class="card">
 					<img class="card-img-top" src="free_access_picture.png" alt="Card image cap">
@@ -45,7 +48,9 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Add Bootstrap JS link -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
-</html>
-</html>
-</html>
