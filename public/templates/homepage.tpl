@@ -4,7 +4,7 @@
 </head>
    <body>
 	<div class="row" style="justify-content: center; display: flex;text-align: center;">
-		<h3>NARRATIVE MINDWORKS WELCOMES YOU <br/> WORKING TOGHETER</h3>
+		<h3>NARRATIVE MINDWORKS WELCOMES YOU <br/> WORKING TOGHETER</h3> 
 	</div>  
 	<div class="row" style="justify-content: center;text-align: center; text-justify: inter-word; margin-top: 10px">
 		<p>
