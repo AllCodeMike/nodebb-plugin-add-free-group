@@ -15,6 +15,7 @@
 	],
 	"templates": "./public/templates",
 	"staticDirs": {
-		"public": "public"
+		"public": "public",
+		"images": "public/images"
 	}
 }
