@@ -52,7 +52,7 @@ plugin.registerComplete = async (params) => {
 			}
 		}
 
-		const response = await axios.post('http://127.0.0.1:3000/register-checkout-session/' + params.registration_plan, {}, config)
+		const response = await axios.post(params.INTEGRATION_URL + '/register-checkout-session/' + params.registration_plan, {}, config)
 			.then(response => {
 				params.next = response.data;
 			})
